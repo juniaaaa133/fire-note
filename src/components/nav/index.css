@@ -1,0 +1,43 @@
+.nav-ctn {
+    height: 40px;;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top:0;
+    align-items: center;
+    padding: 2px 30px;
+}
+.icn {
+    font-size: 25px;
+    cursor: pointer;
+}
+.nav-cart-ctn {
+    width:fit-content;
+    display: flex;
+    align-items: center;
+    gap:5px;
+    position: relative;
+}
+.nav-qty-ctn {
+    cursor: pointer;
+    user-select: none;
+    position: absolute;
+    top:-20px;right:-20px;left: 0; bottom:0;
+    margin: auto;    
+    background-color: #3B6090;
+    width:11px;
+    height: 11px;
+    border-radius: 50%;
+    padding:5px;
+}
+.nav-qty {
+    font-size: 10px;
+    color: #ffffff;
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    top:0;right:0;left: 0; bottom:0;
+    margin: auto;
+
+}
