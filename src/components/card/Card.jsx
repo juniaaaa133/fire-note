@@ -1,68 +1,27 @@
-import React, { useContext, useState } from 'react'
-import './index.css'
-import '../cart/index.css'
-import { FaCartPlus } from "react-icons/fa";
-import { ItemContext } from '../../context/ItemContext';
+import React, { useContext, useEffect, useState } from 'react'
+import { FaRegSquare } from "react-icons/fa6";
+import { FaRegSquareCheck } from "react-icons/fa6";
+import { MdOutlineRemoveCircleOutline } from "react-icons/md";
 
-const Card = ({id,name,img,desc,price}) => {
+const Card = ({data,methods}) => {
 
-let [qty,setQty] = useState(1);
-let {add} = useContext(ItemContext)
-
-let increaseQty = () => {
-  if(qty >= 10) {
-return;
-  }else{
-setQty(qty +1);
-  }
-}
-
-let decreaseQty = () => {
-  if(qty <= 1) {
-return;
-  }else{
-setQty(qty -1);
-  }
-}
-
-let addItem = () => {
-  let itemToAdd = {
-    id,
-    name,
-    img,
-    price,
-    qty,
-  }
-  add(itemToAdd)
-}
+  let {id,isCompleted , task} = data;
+  let {updateData,deleteData} = methods;
 
   return (
-    <div className='card bg-main main-f'>
-        <img src={img} alt="" className="card-img" />
-       <div className="card-info-ctn">
-       <h3 className="card-title main-f">{name} </h3>
-        <p className="card-desc main-f">{desc}</p>
-       </div>
-       <div className="card-sec-ctn">
-       <div className="price main-f">
-          <p className=''>$</p>
-          <p className="">{price}</p>
-      </div>
-       <div className="card-price-ctn">
-      <div  className="cart-qty-ctn">
-        <div onClick={decreaseQty} className="cart-qty-btn">-</div>
-        <p className="cart-qty-data">{qty}</p>
-        <div onClick={increaseQty} className="cart-qty-btn">+</div>
-      </div>
-      <div onClick={addItem} className="btn card-btn">
-            <p>Add</p>
-            <FaCartPlus />
-        </div>
-     </div>
-    
-       
-       </div>
-    </div>
+<div className='w-full h-[75px] flex justify-between items-center px-[10px] bg-[#f0f8fa] rounded-[5px]'>
+  <div className="flex items-center gap-[10px]">
+{
+  isCompleted ? 
+  <FaRegSquareCheck onClick={()=>updateData(id,false)} className='t-main cursor-pointer'/>
+:
+<FaRegSquare onClick={()=>updateData(id,true)} className='t-main cursor-pointer'/>
+
+}
+  <p className={`text-[13px] sm:text-[15px] main-f ${isCompleted ? 'line-through' : ''}`}>{task}</p>
+  </div>
+  <MdOutlineRemoveCircleOutline onClick={()=>deleteData(id)} className='t-main text-[20px] cursor-pointer' />
+</div>
   )
 }
 

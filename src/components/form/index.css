@@ -1,0 +1,7 @@
+.input {
+    outline: inherit;
+    border : solid 1.5px #6DC5D1;
+    height: 40px;
+    padding: 5px ;
+    border-radius: 5px;
+}
